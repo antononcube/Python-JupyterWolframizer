@@ -97,12 +97,9 @@ class Wolframizer(Magics):
         if wlExpr:
             new_cell = self.session.evaluate(wlexpr(cell))
         else:
-            # wxf = self.session.evaluate_wxf(wlexpr(cell))
-            # print(wxf)
-            # new_cell = binary_deserialize(wxf)
-            new_cell = self.session.evaluate_wrap(wlexpr(cell))
-            print(type(new_cell))
-            print(repr(new_cell.result))
+            wxf = self.session.evaluate_wxf(wlexpr(cell))
+            new_cell = binary_deserialize(wxf)
+
 
         # Copy to clipboard
         if not args.get("no_clipboard", False):
